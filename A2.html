@@ -1,0 +1,239 @@
+<html>
+    <head>
+        <?xml-stylesheet type="text/xsl" href="S2.xsl"?>
+        <style>
+            #part1{
+                background-color: #d1e6ed;
+                font-style: arial;
+            }
+
+            #tab1{
+               display: inline-block;
+               margin-left: 80px; 
+            }
+
+            #tab{
+               display: inline-block;
+               margin-left: 290px; 
+            }
+
+            #score{
+                color: red;
+            }
+
+            #item1{
+                color: rgb(224, 148, 55);
+                font-size: large;
+            }
+
+            #item2{
+                color: blue;
+                font-size: large;
+            }
+
+            #item3{
+                color: darkcyan;
+                font-size: large;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h3><u>Part 1</u></h3>
+        <table border="1" style=" font-style: arial;">
+            <tr>
+                <th id="part1" width="300" height="30" colspan="3">CSIT128: Assignment 2 </th>
+                <th id="part1" width="200">Group TxGyy</th>
+            </tr>
+            <tr>
+                <td width="150" rowspan="3" height="100">Student Number / Name / Email </td>
+                <td width="70"> 8234681</td>
+                <td width="150">  Alicia Thum Hew Yan </td>
+                <td width="230"> ahythum001@mymail.sim.edu.sg </td>
+            </tr>
+            <tr>
+                <td>  8039173 </td>
+                <td>  Min Khant Thu </td>
+                <td> inkt001@mymail.sim.edu.sg </td>
+            </tr>
+            <tr>
+                <td> 7881575 </td>
+                <td> Thwin Han Shin </td>
+                <td> ths001@mymail.sim.edu.sg </td>
+            </tr>
+        </table>
+        <br/> <br/>
+        <h3><u>Part 2</u></h3>
+        <table border="1px solid black" style="border-collapse: collapse;" width="40%" height="15%">
+            <tr>
+                <th height="35" colspan="3" style=" background-color: rgba(255, 207, 139, 0.893); font-size: large;"> Part 2: Game </th>
+            </tr>
+            <tr>
+                <td height="40" style="background-color: #d1e6ed;">
+                    <b>
+                        You chosen number:
+                        <form>
+                            <select id="SelectItem">
+                                <option value="!">!</option>
+                                <option value="@">@</option>
+                                <option value="#">#</option>
+                                <option value="$">$</option>
+                                <option value="%">%</option>
+                                <option value="^">^</option>
+                                <option value="&">&</option>
+                                <option value="*">*</option>
+                                <option value="(">(</option>
+                                <option value=")">)</option>
+                                <option value="_">_</option>
+                                <option value="+">+</option>
+                                <option value="=">=</option>
+                                <option value="?">?</option>
+                                <option value="q">q</option>
+                                <option value="w">w</option>
+                                <option value="e">e</option>
+                                <option value="r">r</option>
+                                <option value="t">t</option>
+                                <option value="y">y</option>
+                                <option value="u">u</option>
+                                <option value="i">i</option>
+                                <option value="o">o</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="0">0</option>
+                            </select>
+                            <button type="button" onclick="selectItem()">Select</button>
+                        </form>
+                    </b>
+                </td>
+                <td align="center" style="background-color: #d1e6ed;">!@#$%^&*()_+=?qwertyuiop1234567890</td>
+                <td align="center" style="background-color: blanchedalmond;">
+                    <b>
+                        Current Score:
+                        <span id="score">0</span>
+                    </b>
+                </td>
+            </tr>
+            <tr>
+                <td height="35" colspan="3" style="background-color:chartreuse;">
+                    <span id="tab1"></span>
+                    <button onclick="alertEverySecond()">Start Game</button>
+                    <span id="tab"></span> 
+                    <button onclick="stopAlert()">Stop Game</button>
+                </td>
+            </tr>
+            <tr>
+                <td height="70" align="center" onclick="calcScore1()"> 
+                    <span id="item1"> 
+                        <1<sup>st</sup> item>
+                    </span>
+                </td>
+                <td align="center" onclick="calcScore2()"> 
+                    <span id="item2">
+                        <2<sup>nd</sup> item>
+                    </span>
+                </td>
+                <td align="center" onclick="calcScore3()"> 
+                    <span id="item3">
+                        <3<sup>rd</sup> item>
+                    </span>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            var alertSchedule;
+            var item1;
+            var item2;
+            var item3;
+            var score = document.getElementById("score").value = 0;
+            var selectedItem = document.getElementById("SelectItem").value;
+
+            function selectItem(){
+                selectedItem = document.getElementById("SelectItem").value;
+            }
+
+            function alertEverySecond() {
+                alertSchedule = setInterval(itemGenerator, 1000);
+            }
+
+            function itemGenerator() {
+                var itemList = ["!","@","#","$","%","^","&","*","(",")","_","+","=","?","q","w","e","r","t","y","u","i","o","p",1,2,3,4,5,6,7,8,9,0];
+                var index1 = Math.floor(Math.random() * itemList.length);
+                var index2 = Math.floor(Math.random() * itemList.length);
+                var index3 = Math.floor(Math.random() * itemList.length);
+
+                item1 = itemList[index1];
+                item2 = itemList[index2];
+                item3 = itemList[index3];
+
+                while(item1==item2 || item2==item3 || item1==item3){
+                    itemGenerator();
+                }
+
+                changeItem1();
+                changeItem2();
+                changeItem3();
+                
+            }
+
+            function stopAlert() {
+                score = 0;
+                document.getElementById("score").innerHTML = score;
+                clearInterval(alertSchedule);
+            }
+
+            function changeItem1(){
+                document.getElementById("item1").innerHTML = item1;
+            }
+
+            function changeItem2(){
+                document.getElementById("item2").innerHTML = item2;
+            }
+
+            function changeItem3(){
+                document.getElementById("item3").innerHTML = item3;
+            }
+
+            function calcScore1(){
+                selectItem();
+                if(selectedItem == item1){
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                } else {
+                    score -= 3;
+                    document.getElementById("score").innerHTML = score;
+                }
+            }
+
+            function calcScore2(){
+                selectItem();
+                if(selectedItem == item2){
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                } else {
+                    score -= 3;
+                    document.getElementById("score").innerHTML = score;
+                }
+            }
+
+            function calcScore3(){
+                selectItem();
+                if(selectedItem == item3){
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                } else {
+                    score -= 3;
+                    document.getElementById("score").innerHTML = score;
+                }
+            }
+
+        </script>
+    </body>
+</html>
